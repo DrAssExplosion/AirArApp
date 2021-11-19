@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="./src/assets/radar_icon_64.png" />
+  <meta name="description" content="Airplane detector" />
+  <script src='https://aframe.io/releases/0.7.0/aframe.min.js'></script>
+  <script src='https://raw.githack.com/jeromeetienne/AR.js/master/aframe/build/aframe-ar.min.js'></script>
+  <script src='./build/index.js'></script>
+  <!-- <script src='./scripts/geo.js'></script>
+  <script src='./scripts/index.js'></script> -->
+
+  <style>
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      color: red;
+    }
+  </style>
+
+  <title>React App</title>
+</head>
+
+
+
+
+<body style="margin: 0; overflow: hidden;">
+  <div>
+    <p>Поворот x_y_z <span id='rot'></span></p>
+    <p>Квантерион w_x_y_z <span id='pos'></span></p>
+  </div>
+
+  <a-scene vr-mode-ui="enabled: false;" embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
+
+    <a-assets>
+      <img id="img_airplane" src="./src/assets/airplane.png">
+    </a-assets>
+
+    <a-text value='NORTH' scale='100 100 100' look-at='[gps-camera]'
+      gps-entity-place='latitude:54.787353; longitude: 20.635663;'>
+    </a-text>
+    <a-text value='EAST' scale='100 100 100' look-at='[gps-camera]'
+      gps-entity-place='latitude:54.782526; longitude: 20.643676;'>
+    </a-text>
+    <a-text value='SOUTH' scale='100 100 100' look-at='[gps-camera]'
+      gps-entity-place='latitude:54.779253; longitude: 20.635408;'>
+    </a-text>
+    <a-text value='WEST' scale='100 100 100' look-at='[gps-camera]'
+      gps-entity-place='latitude:54.782362; longitude: 20.620955;'>
+    </a-text>
+
+    <a-image width='50' height='50' look-at='[gps-camera]' src='#img_airplane'
+      gps-entity-place='latitude: 54.787353; longitude: 20.635663;'>
+    </a-image>
+
+
+    <a-camera  look-controls-enabled='true' arjs-look-controls='smoothingFactor: 0.1' gps-camera='gpsMinDistance: 5' rotation-reader></a-camera>
+  </a-scene>
+
+</body>
+
+</html>
